@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0D0E">
+  <meta name="description" content="SpinIt by JuanPancho's: crea ruletas personalizadas y deja que el azar decida. Soporte técnico, puntos de venta y desarrollo web en Tehuacán, Puebla.">
+  <title>SpinIt — Ruleta de decisiones | JuanPancho's</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='24' fill='%230B0D0E'/%3E%3Cg stroke='%23FFB000' stroke-width='8' fill='none' stroke-linecap='round'%3E%3Crect x='24' y='22' width='72' height='46' rx='10'/%3E%3Cpath d='M60 68v12M46 88h28'/%3E%3Cpath d='M44 36l10 9-10 9M76 36l-10 9 10 9' stroke-width='5.5'/%3E%3C/g%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="JuanPancho's — inicio">
+        <svg class="logo-mark" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+          <rect x="16" y="14" width="88" height="56" rx="12" stroke="currentColor" stroke-width="8"/>
+          <path d="M60 70v14M44 92h32" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+          <path d="M40 32l12 10-12 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M58 30l8 24" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+          <path d="M80 32l-12 10 12 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name"><span class="lt">&lt;</span>JuanPancho's<span class="rt">/&gt;</span></span>
+          <span class="brand-sub">SpinIt · Ruleta de decisiones</span>
+        </span>
+      </a>
+      <div class="topbar-right">
+        <span class="save-indicator"><i></i> Guardado local</span>
+        <a class="nav-contact" href="#contacto">Contacto</a>
+        <button class="icon-button" id="shareTopBtn" title="Compartir ruleta" aria-label="Compartir ruleta">↗</button>
+        <a class="btn btn-gold header-cta" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20quiero%20informaci%C3%B3n.">WhatsApp</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker"><span class="lamp lamp-lit" aria-hidden="true"></span> Decidiendo en vivo</p>
+          <h1>Que gire la <span>ruleta.</span></h1>
+          <p class="lede">Agrega tus opciones, ajusta las probabilidades y deja que la suerte decida. Una herramienta de <strong>JuanPancho's</strong> para negocios que no se detienen.</p>
+          <p class="mono-note"><span class="lamp" aria-hidden="true"></span> Sin cuentas · datos guardados en tu navegador</p>
+        </div>
+        <div class="wheel-select-wrap">
+          <label for="wheelSelect">RULETA ACTUAL</label>
+          <div class="select-row">
+            <select id="wheelSelect" aria-label="Seleccionar ruleta"></select>
+            <button class="small-icon-button" id="newWheelBtn" title="Crear ruleta" aria-label="Crear ruleta">＋</button>
+            <button class="small-icon-button" id="renameWheelBtn" title="Renombrar ruleta" aria-label="Renombrar ruleta">✎</button>
+            <button class="small-icon-button danger-hover" id="deleteWheelBtn" title="Eliminar ruleta" aria-label="Eliminar ruleta">×</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>JuanPancho's</span><i></i><span>Soluciones tecnológicas</span><i></i><span>Ruletas personalizadas</span><i></i><span>Tehuacán, Puebla</span><i></i>
+          <span>JuanPancho's</span><i></i><span>Soluciones tecnológicas</span><i></i><span>Ruletas personalizadas</span><i></i><span>Tehuacán, Puebla</span><i></i>
+        </div>
+      </div>
+
+      <section class="workspace">
+        <aside class="panel options-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">CONFIGURACIÓN</p><h2>Tus opciones</h2></div>
+            <span class="count-pill" id="optionCount">0</span>
+          </div>
+          <form id="addOptionForm" class="add-form">
+            <input id="optionInput" type="text" maxlength="48" placeholder="Escribe una opción..." autocomplete="off" required>
+            <button class="primary-button add-button" type="submit" aria-label="Agregar opción">+</button>
+          </form>
+          <div class="options-list" id="optionsList" aria-live="polite"></div>
+          <div class="empty-options" id="emptyOptions">
+            <span class="empty-icon">＋</span>
+            <strong>Tu ruleta está vacía</strong>
+            <span>Agrega al menos dos opciones para comenzar.</span>
+          </div>
+          <div class="panel-footer">
+            <button class="text-button" id="clearOptionsBtn">Limpiar opciones</button>
+            <button class="text-button" id="shuffleOptionsBtn">Mezclar orden</button>
+          </div>
+        </aside>
+
+        <section class="panel wheel-panel">
+          <div class="wheel-panel-heading">
+            <div><p class="eyebrow">LA DECISIÓN ESTÁ EN TUS MANOS</p><h2>Hora de girar</h2></div>
+            <button class="sound-toggle active" id="soundToggle" aria-pressed="true" title="Activar o desactivar sonido"><span>♫</span><b>Sonido</b></button>
+          </div>
+          <div class="wheel-stage">
+            <div class="wheel-glow"></div>
+            <div class="pointer"></div>
+            <canvas id="wheelCanvas" width="720" height="720" aria-label="Ruleta de opciones"></canvas>
+            <div class="wheel-hub"><span>SPIN</span></div>
+          </div>
+          <div class="spin-controls">
+            <button class="spin-button" id="spinBtn" disabled><span>GIRAR RULETA</span><span class="spin-arrow">↗</span></button>
+            <p id="spinHint">Agrega al menos dos opciones para girar.</p>
+          </div>
+          <div class="winner-card hidden" id="winnerCard" aria-live="assertive">
+            <div class="winner-spark">✦</div>
+            <div class="winner-info"><span class="eyebrow">EL RESULTADO ES</span><strong id="winnerText">—</strong></div>
+            <button class="winner-close" id="closeWinnerBtn" aria-label="Dejar el ganador y cerrar">×</button>
+            <div class="winner-actions hidden" id="winnerActions">
+              <button class="winner-action remove" id="removeWinnerBtn">Quitar</button>
+              <button class="winner-action keep" id="keepWinnerBtn">Dejar</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="right-column">
+          <section class="panel settings-panel">
+            <div class="panel-heading compact"><div><p class="eyebrow">AJUSTES</p><h2>Personaliza</h2></div></div>
+            <label class="setting-row" for="removeModeSelect">
+              <span><strong>Al ganar</strong><small>Preguntar, quitar automáticamente o conservar</small></span>
+              <select id="removeModeSelect" class="mode-select" aria-label="Qué hacer con la opción ganadora">
+                <option value="ask">Preguntar</option>
+                <option value="auto">Quitar</option>
+                <option value="keep">Conservar</option>
+              </select>
+            </label>
+            <div class="setting-block">
+              <div class="setting-title"><strong>Paleta de colores</strong><small>Elige el estilo de tu ruleta</small></div>
+              <div class="palette-list" id="paletteList">
+                <button class="palette active" data-palette="neon" aria-label="Paleta oro"><i style="--swatch:#FFB000"></i><i style="--swatch:#FFC400"></i><i style="--swatch:#FFD166"></i><i style="--swatch:#E69A00"></i></button>
+                <button class="palette" data-palette="ocean" aria-label="Paleta cobre"><i style="--swatch:#E08A00"></i><i style="--swatch:#F97316"></i><i style="--swatch:#FB923C"></i><i style="--swatch:#C2410C"></i></button>
+                <button class="palette" data-palette="sunset" aria-label="Paleta latón"><i style="--swatch:#D4A017"></i><i style="--swatch:#FACC15"></i><i style="--swatch:#EAB308"></i><i style="--swatch:#A16207"></i></button>
+                <button class="palette" data-palette="forest" aria-label="Paleta grafito"><i style="--swatch:#6B7280"></i><i style="--swatch:#9CA3AF"></i><i style="--swatch:#FFB000"></i><i style="--swatch:#4B5563"></i></button>
+                <button class="palette" data-palette="esmeralda" aria-label="Paleta esmeralda"><i style="--swatch:#34D399"></i><i style="--swatch:#10B981"></i><i style="--swatch:#059669"></i><i style="--swatch:#6EE7B7"></i></button>
+                <button class="palette" data-palette="oceano" aria-label="Paleta océano"><i style="--swatch:#38BDF8"></i><i style="--swatch:#0EA5E9"></i><i style="--swatch:#0284C7"></i><i style="--swatch:#7DD3FC"></i></button>
+                <button class="palette" data-palette="violeta" aria-label="Paleta violeta"><i style="--swatch:#A78BFA"></i><i style="--swatch:#8B5CF6"></i><i style="--swatch:#7C3AED"></i><i style="--swatch:#C4B5FD"></i></button>
+                <button class="palette" data-palette="rubi" aria-label="Paleta rubí"><i style="--swatch:#F43F5E"></i><i style="--swatch:#E11D48"></i><i style="--swatch:#BE123C"></i><i style="--swatch:#FB7185"></i></button>
+              </div>
+            </div>
+            <div class="setting-block">
+              <div class="setting-title"><strong>Probabilidades</strong><small>Define el peso de cada opción en la lista</small></div>
+              <div class="weight-summary"><span>Pesos totales</span><strong id="totalWeight">0</strong></div>
+            </div>
+          </section>
+          <section class="panel history-panel">
+            <div class="panel-heading compact"><div><p class="eyebrow">ACTIVIDAD</p><h2>Historial</h2></div><button class="text-button" id="clearHistoryBtn">Borrar</button></div>
+            <div id="historyList" class="history-list"></div>
+            <div id="emptyHistory" class="empty-history">Todavía no hay resultados.<br>Tu historial aparecerá aquí.</div>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer" id="contacto">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="logo-lockup">
+          <svg class="logo-mark" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <rect x="16" y="14" width="88" height="56" rx="12" stroke="currentColor" stroke-width="8"/>
+            <path d="M60 70v14M44 92h32" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+            <path d="M40 32l12 10-12 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M58 30l8 24" stroke="currentColor" stroke-width="5.5" stroke-linecap="round"/>
+            <path d="M80 32l-12 10 12 10" stroke="currentColor" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="logo-text">
+            <span class="logo-name"><span class="lt">&lt;</span>Juan Pancho's<span class="rt"> /&gt;</span></span>
+            <span class="logo-desc">Soluciones tecnológicas</span>
+            <span class="logo-rule" aria-hidden="true"></span>
+          </div>
+        </div>
+        <p>SpinIt es nuestra ruleta de decisiones: soporte técnico, puntos de venta y desarrollo web para negocios, empresas y emprendedores.</p>
+      </div>
+      <nav class="footer-col" aria-label="Contacto">
+        <h3>Contacto</h3>
+        <a href="https://wa.me/522381501369">WhatsApp 238 150 1369</a>
+        <a href="https://wa.me/522381271940">WhatsApp 238 127 1940</a>
+        <a href="https://wa.me/522211959921">WhatsApp 221 195 9921</a>
+        <a href="tel:+522381501369">Tel. 238 150 1369</a>
+        <a href="tel:+522211959921">Tel. 221 195 9921</a>
+      </nav>
+      <nav class="footer-col" aria-label="Redes sociales">
+        <h3>Redes</h3>
+        <a href="https://www.instagram.com/juanpanchos_tehuacan/" target="_blank" rel="noopener">Instagram @juanpanchos_tehuacan</a>
+        <a href="https://www.facebook.com/profile.php?id=61577993078029" target="_blank" rel="noopener">Facebook JuanPancho's</a>
+        <a href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20quiero%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+      </nav>
+      <div class="footer-col footer-cta">
+        <h3>¿Necesitas soporte?</h3>
+        <p>Te respondemos por WhatsApp en minutos. Tehuacán y alrededores.</p>
+        <a class="btn btn-gold" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20necesito%20soporte%20t%C3%A9cnico.">Escríbenos</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 JuanPancho's · Tehuacán, Puebla</span>
+        <span>SpinIt · Los datos se guardan en este navegador</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/522381501369?text=Hola%20JuanPancho%27s%2C%20quiero%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.8 0-1.6-.1-2.4-.4-.3-.1-.6 0-.9.2l-1 1c-.1.1-.2.1-.3.1-.4-.1-1-.5-1.7-1.2-.9-.9-1.5-1.7-1.7-2.1-.1-.2-.1-.4 0-.5l1.1-1.1c.3-.3.4-.6.2-.9-.4-.8-.6-1.6-.6-2.4 0-.4-.3-.7-.7-.7H7.4c-.4 0-.7.3-.7.7C6.6 12.9 11.1 17.4 16.6 17.4c.4 0 .7-.3.7-.7v-1.6c0-.4-.3-.7-.8-.7z"/></svg>
+  </a>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Cerrar">×</button>
+      <p class="eyebrow" id="modalEyebrow">SPINIT</p>
+      <h2 id="modalTitle">Título</h2>
+      <p class="modal-copy" id="modalCopy"></p>
+      <div id="modalBody"></div>
+      <div class="modal-actions" id="modalActions"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/wheel.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
