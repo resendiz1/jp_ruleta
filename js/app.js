@@ -65,7 +65,7 @@
       osc.connect(gain);gain.connect(ac.destination);osc.start();osc.stop(ac.currentTime+duration);
     }catch(e){console.warn("Audio no disponible",e);}
   }
-  function showModal({title,copy="",eyebrow="SPINIT",body="",actions=[]}){
+  function showModal({title,copy="",eyebrow="JP RULETA",body="",actions=[]}){
     lastFocused=document.activeElement;
     els.modalTitle.textContent=title;els.modalCopy.textContent=copy;els.modalEyebrow.textContent=eyebrow;
     els.modalBody.innerHTML=body;els.modalActions.innerHTML="";

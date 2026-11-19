@@ -46,14 +46,14 @@
       if (parsed && Array.isArray(parsed.wheels) && parsed.wheels.length) {
         return {wheels:parsed.wheels.map(normalizeWheel),activeId:parsed.activeId};
       }
-    } catch (e) { console.warn("No se pudo leer SpinIt:", e); }
+    } catch (e) { console.warn("No se pudo leer JP Ruleta:", e); }
     const first = starter();
     return {wheels:[first],activeId:first.id};
   }
   let state = load();
   function save() {
     try { localStorage.setItem(KEY, JSON.stringify(state)); }
-    catch (e) { console.warn("No se pudo guardar SpinIt:", e); }
+    catch (e) { console.warn("No se pudo guardar JP Ruleta:", e); }
   }
   function getState() { return state; }
   function getActive() {

@@ -1,4 +1,4 @@
-# SpinIt
+# JP Ruleta
 
 Ruleta de decisiones hecha con HTML, CSS y JavaScript vanilla. No requiere backend ni dependencias de JavaScript.
 
@@ -28,4 +28,4 @@ Abre `index.html` en un navegador moderno. Para probar compartir enlaces de form
 - Los datos permanecen en el navegador donde se crearon; borrar datos del sitio elimina las ruletas guardadas.
 - Los enlaces compartidos contienen las opciones y pesos codificados en el fragmento de URL. No se suben a un servidor.
 - Los pesos son relativos: peso 2 tiene el doble de probabilidad que peso 1, no una probabilidad absoluta.
-- Para una selección ponderada, SpinIt usa `crypto.getRandomValues`; la animación aterriza en el segmento elegido.
+- Para una selección ponderada, JP Ruleta usa `crypto.getRandomValues`; la animación aterriza en el segmento elegido.
